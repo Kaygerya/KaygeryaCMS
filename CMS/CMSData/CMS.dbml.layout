@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="CMS">
+  <DataContextMoniker Name="/CMSDataContext" />
+  <nestedChildShapes>
+    <classShape Id="c65b798e-c629-42aa-9b91-7ff271d0e198" absoluteBounds="3.5, 1.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/CMSDataContext/PageOption" />
+      <nestedChildShapes>
+        <elementListCompartment Id="188b4a9c-2697-4056-9ffc-ff505f8cf120" absoluteBounds="3.515, 1.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="24ac41f8-6a8a-4bdf-8c37-f091edc442ba" absoluteBounds="0.75, 1, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/CMSDataContext/Page" />
+      <nestedChildShapes>
+        <elementListCompartment Id="685c0b64-61f5-4878-8393-c1ca472060c9" absoluteBounds="0.765, 1.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 2.16429768880208); (3.5 : 2.16429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CMSDataContext/Page/Page_PageOption" />
+      <nodes>
+        <classShapeMoniker Id="24ac41f8-6a8a-4bdf-8c37-f091edc442ba" />
+        <classShapeMoniker Id="c65b798e-c629-42aa-9b91-7ff271d0e198" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
