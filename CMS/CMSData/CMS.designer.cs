@@ -282,7 +282,13 @@ namespace CMSData
 		
 		private int _PageOrder;
 		
+		private bool _IsActive;
+		
 		private EntitySet<PageOption> _PageOptions;
+		
+		private EntitySet<Page> _Pages;
+		
+		private EntityRef<Page> _Page1;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -304,11 +310,15 @@ namespace CMSData
     partial void OnPageContentChanged();
     partial void OnPageOrderChanging(int value);
     partial void OnPageOrderChanged();
+    partial void OnIsActiveChanging(bool value);
+    partial void OnIsActiveChanged();
     #endregion
 		
 		public Page()
 		{
 			this._PageOptions = new EntitySet<PageOption>(new Action<PageOption>(this.attach_PageOptions), new Action<PageOption>(this.detach_PageOptions));
+			this._Pages = new EntitySet<Page>(new Action<Page>(this.attach_Pages), new Action<Page>(this.detach_Pages));
+			this._Page1 = default(EntityRef<Page>);
 			OnCreated();
 		}
 		
@@ -363,6 +373,10 @@ namespace CMSData
 			{
 				if ((this._ParentPage != value))
 				{
+					if (this._Page1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnParentPageChanging(value);
 					this.SendPropertyChanging();
 					this._ParentPage = value;
@@ -472,6 +486,26 @@ namespace CMSData
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsActive", DbType="Bit NOT NULL")]
+		public bool IsActive
+		{
+			get
+			{
+				return this._IsActive;
+			}
+			set
+			{
+				if ((this._IsActive != value))
+				{
+					this.OnIsActiveChanging(value);
+					this.SendPropertyChanging();
+					this._IsActive = value;
+					this.SendPropertyChanged("IsActive");
+					this.OnIsActiveChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Page_PageOption", Storage="_PageOptions", ThisKey="PageID", OtherKey="PageID")]
 		public EntitySet<PageOption> PageOptions
 		{
@@ -482,6 +516,53 @@ namespace CMSData
 			set
 			{
 				this._PageOptions.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Page_Page", Storage="_Pages", ThisKey="PageID", OtherKey="ParentPage")]
+		public EntitySet<Page> Pages
+		{
+			get
+			{
+				return this._Pages;
+			}
+			set
+			{
+				this._Pages.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Page_Page", Storage="_Page1", ThisKey="ParentPage", OtherKey="PageID", IsForeignKey=true)]
+		public Page Page1
+		{
+			get
+			{
+				return this._Page1.Entity;
+			}
+			set
+			{
+				Page previousValue = this._Page1.Entity;
+				if (((previousValue != value) 
+							|| (this._Page1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Page1.Entity = null;
+						previousValue.Pages.Remove(this);
+					}
+					this._Page1.Entity = value;
+					if ((value != null))
+					{
+						value.Pages.Add(this);
+						this._ParentPage = value.PageID;
+					}
+					else
+					{
+						this._ParentPage = default(int);
+					}
+					this.SendPropertyChanged("Page1");
+				}
 			}
 		}
 		
@@ -515,6 +596,18 @@ namespace CMSData
 		{
 			this.SendPropertyChanging();
 			entity.Page = null;
+		}
+		
+		private void attach_Pages(Page entity)
+		{
+			this.SendPropertyChanging();
+			entity.Page1 = this;
+		}
+		
+		private void detach_Pages(Page entity)
+		{
+			this.SendPropertyChanging();
+			entity.Page1 = null;
 		}
 	}
 }

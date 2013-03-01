@@ -19,7 +19,10 @@
       <Column Name="Keywords" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="PageContent" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="PageOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Page_PageOption" Member="PageOptions" ThisKey="PageID" OtherKey="PageID" Type="PageOption" />
+      <Association Name="Page_Page" Member="Pages" ThisKey="PageID" OtherKey="ParentPage" Type="Page" />
+      <Association Name="Page_Page" Member="Page1" ThisKey="ParentPage" OtherKey="PageID" Type="Page" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

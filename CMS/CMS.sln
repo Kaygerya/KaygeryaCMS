@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS", "CMS\CMS.csproj", "{21F002B7-1131-4094-AF13-14B104CBD4BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.UI", "CMS\CMS.UI.csproj", "{21F002B7-1131-4094-AF13-14B104CBD4BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.Service", "CMS.Service\CMS.Service.csproj", "{A71300CE-680F-4AA3-890F-438F3445C9C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMSData", "CMSData\CMSData.csproj", "{9E3D4A35-0A63-401A-8740-98E7B22DE62E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +17,14 @@ Global
 		{21F002B7-1131-4094-AF13-14B104CBD4BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21F002B7-1131-4094-AF13-14B104CBD4BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21F002B7-1131-4094-AF13-14B104CBD4BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A71300CE-680F-4AA3-890F-438F3445C9C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A71300CE-680F-4AA3-890F-438F3445C9C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A71300CE-680F-4AA3-890F-438F3445C9C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A71300CE-680F-4AA3-890F-438F3445C9C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E3D4A35-0A63-401A-8740-98E7B22DE62E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E3D4A35-0A63-401A-8740-98E7B22DE62E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E3D4A35-0A63-401A-8740-98E7B22DE62E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E3D4A35-0A63-401A-8740-98E7B22DE62E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
